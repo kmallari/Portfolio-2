@@ -7,6 +7,7 @@ function App() {
     <body className='bg-neutral-dark-300 text-neutral-light-100 bg-dark-pattern bg-repeat font-switzer'>
       <Navbar />
       <Header />
+      <Header />
     </body>
   );
 }
