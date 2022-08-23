@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DateTime } from "luxon";
 interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = ({}) => {
-  const [unixTime, setUnixTime] = useState(DateTime.local().toMillis());
   const [time, setTime] = useState(0);
-  setTimeout(() => {
-    console.log("TEST")
-  }, 1000);
+
+  const millisToYears = (millis: number) => {
+    return millis / (1000 * 60 * 60 * 24 * 365);
+  };
+
+  const birthday = DateTime.fromISO("1999-06-02").toMillis();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTime(millisToYears(DateTime.local().toMillis() - birthday));
+      console.log("TEST");
+    }, 100);
+  }, [time]);
 
   return (
     <header className='text-3xl min-h-screen h-fit flex flex-col items-center justify-center relative w-11/12 mx-auto font-azeret'>
