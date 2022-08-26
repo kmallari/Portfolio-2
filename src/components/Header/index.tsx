@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { DateTime } from "luxon";
 interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = ({}) => {
+  const { height, width } = useWindowDimensions();
   const [time, setTime] = useState(0);
 
   const millisToYears = (millis: number) => {
@@ -11,26 +13,53 @@ export const Header: React.FC<HeaderProps> = ({}) => {
 
   const birthday = DateTime.fromISO("1999-06-02").toMillis();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTime(millisToYears(DateTime.local().toMillis() - birthday));
-      console.log("TEST");
-    }, 100);
-  }, [time]);
+  setTimeout(() => {
+    setTime(millisToYears(DateTime.local().toMillis() - birthday));
+  }, 40);
+
+  const getBaseLog = (x: number, y: number) => {
+    return Math.log(y) / Math.log(x);
+  };
 
   return (
-    <header className='text-3xl min-h-screen h-fit flex flex-col items-center justify-center relative w-11/12 mx-auto font-azeret'>
+    <header className='min-h-screen flex flex-col items-center justify-center relative w-11/12 mx-auto font-azeret'>
       <img
         src='/static/images/self.webp'
         alt='kevin mallari'
-        className='h-[48rem] absolute bottom-0 right-96 select-none'
+        className='absolute bottom-0 sm:w-5/6 md:w-2/3 lg:w-7/12 xl:w-1/2 2xl:w-5/12'
+        style={{
+          right: `${width && getBaseLog(1.1, width / 800)}rem`,
+        }}
       />
-      <div className='z-10'>
-        <h1 className={`font-semibold leading-tight text-[9rem]`}>
-          {time.toFixed(8)} yr old
-          <br />
+      <div className='flex flex-col leading-tight drop-shadow-sm lg:drop-shadow-xl'>
+        <h1
+          className={`font-semibold z-10`}
+          style={{
+            fontSize: `${width && width * 0.0045}rem`,
+          }}
+        >
+          {width && width > 564 ? (
+            `${time.toFixed(9)} yr old`
+          ) : (
+            <>
+              {`${time.toFixed(9)}`} <br /> year old
+            </>
+          )}
+        </h1>
+        <h1
+          className={`font-semibold`}
+          style={{
+            fontSize: `${width && width * 0.0045}rem`,
+          }}
+        >
           Full Stack
-          <br />
+        </h1>
+        <h1
+          className={`font-semibold z-10`}
+          style={{
+            fontSize: `${width && width * 0.0045}rem`,
+          }}
+        >
           Software Engineer
         </h1>
       </div>
