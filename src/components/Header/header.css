@@ -1,0 +1,9 @@
+.vertical-lines {
+  background: repeating-linear-gradient(
+    90deg,
+    #1f1f1f,
+    #1f1f1f 1px,
+    #1f1f1f00 1px,
+    #1f1f1f00 10%
+  );
+}

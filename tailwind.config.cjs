@@ -25,13 +25,13 @@ module.exports = {
           300: "#0C91AC",
         },
       },
-    },
-    fontFamily: {
-      switzer: ["Switzer"],
-      azeret: ["Azeret Mono"],
-    },
-    backgroundImage: {
-      "dark-pattern": "url(/static/images/bg-pattern-dark.webp)",
+      fontFamily: {
+        switzer: ["Switzer"],
+        azeret: ["Azeret Mono"],
+      },
+      backgroundImage: {
+        "dark-pattern": "url(/static/images/bg-pattern-dark.webp)",
+      },
     },
   },
   plugins: [],
