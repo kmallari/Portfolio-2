@@ -108,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
 
   return width !== null && width > 768 ? (
     <nav
-      className={`w-full flex justify-center items-center backdrop-blur-sm fixed border-y border-white/10 transition-all font-medium z-50 ${
+      className={`w-full flex justify-center items-center backdrop-blur-sm fixed border-y border-slate-300 transition-all font-medium z-50 ${
         isOpen ? "h-16" : "h-8"
       }`}
       onMouseOver={() => setIsOpen(true)}
@@ -122,14 +122,14 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
               initial='initial'
               animate='animate'
               exit='exit'
-              className='h-[2px] w-16 bg-white rounded-xl'
+              className='h-[2px] w-16 bg-slate-700 rounded-xl'
             ></motion.div>
             <motion.div
               variants={bottomBurgerVariants}
               initial='initial'
               animate='animate'
               exit='exit'
-              className='h-[2px] w-16 bg-white rounded-xl'
+              className='h-[2px] w-16 bg-slate-700 rounded-xl'
             ></motion.div>
           </motion.button>
         ) : (
@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
               return (
                 <li
                   key={key}
-                  className='flex flex-col gap-2 py-2 px-20 h-full items-center justify-center text-neutral-500 transition-colors'
+                  className='flex flex-col gap-2 py-2 px-20 h-full items-center justify-center text-slate-400 transition-colors'
                 >
                   <a
                     href={navItems[key as keyof typeof navItems].link}
@@ -164,10 +164,10 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
     </nav>
   ) : (
     <nav
-      className={`w-full flex flex-col items-center backdrop-blur-sm fixed border-y border-white/10 transition-all font-medium h-16 z-50`}
+      className={`w-full flex flex-col items-center backdrop-blur-sm fixed border-y border-slate-300 transition-all font-medium h-16 z-50`}
     >
       <div
-        className='flex flex-col gap-2 py-2 menu-icon menu-icon  z-10'
+        className='flex flex-col gap-2 py-2 menu-icon menu-icon z-10'
         key={1}
         onClick={() => setIsOpenMobile((prev) => !prev)}
       >

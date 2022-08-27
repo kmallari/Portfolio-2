@@ -7,6 +7,7 @@ module.exports = {
         "neutral-dark": {
           100: "#333333",
           200: "#1f1f1f",
+          250: "#141414",
           300: "#020202",
         },
         "neutral-light": {
@@ -31,6 +32,7 @@ module.exports = {
       },
       backgroundImage: {
         "dark-pattern": "url(/static/images/bg-pattern-dark.webp)",
+        "light-pattern": "url(/static/images/bg-pattern-light.webp)",
       },
     },
   },
