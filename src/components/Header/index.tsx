@@ -25,11 +25,17 @@ export const Header: React.FC<HeaderProps> = ({}) => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 400]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-  const y3 = useTransform(scrollY, [0, 500], [0, 500]);
-  const y4 = useTransform(scrollY, [0, 1400], [0, 1200]);
+  const y3 = useTransform(scrollY, [0, 900], [0, 500]);
+  const y4 = useTransform(
+    scrollY,
+    [0, 1000],
+    [0, height! > 900 ? height : height! * 1.2]
+  );
   const color = useTransform(scrollY, [0, 1200], ["#1e293b", "#2B59C3"]);
-  const marginTop1 = useTransform(scrollY, [0, 1000], [0, 240]);
-  const marginTop2 = useTransform(scrollY, [0, 1000], [0, 180]);
+  const marginTop = useTransform(scrollY, [0, 1400], [0, height! / 3]);
+  // const marginTop2 = useTransform(scrollY, [0, 1000], [0, 100]);
+  // const marginTop3 = useTransform(scrollY, [0, 2000], [0, 0]);
+  // const marginTop4 = useTransform(scrollY, [0, 2000], [0, height! / 4]);
 
   return (
     <header className='min-h-screen flex flex-col items-center sm:justify-center relative w-11/12 mx-auto font-azeret text-slate-800'>
@@ -72,8 +78,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           style={{
             y: y4,
             color: color,
-            marginTop:
-              width! < 640 ? marginTop1 : width! < 1024 ? marginTop2 : 0,
+            marginTop: marginTop,
           }}
         >
           <h1
