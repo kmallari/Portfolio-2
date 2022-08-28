@@ -1,0 +1,12 @@
+.vertical-lines {
+  background: repeating-linear-gradient(
+    90deg,
+    #cbd5e1,
+    #cbd5e1 1px,
+    #cbd5e100 1px,
+    #cbd5e100 10%
+  );
+}
+
+.white-shadow {
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);  }
