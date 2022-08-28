@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { DateTime } from "luxon";
 import { motion, useTransform, useScroll } from "framer-motion";
-import styles from "./header.module.css";
-
+import styles from "../styles/header.module.css";
 export const Header: React.FC = ({}) => {
   const { height, width } = useWindowDimensions();
   const [h, setH] = useState<number | null>(null);
@@ -38,23 +37,42 @@ export const Header: React.FC = ({}) => {
   };
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 400]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-  const y3 = useTransform(scrollY, [0, 900], [0, 500]);
-  const y4 = useTransform(scrollY, [0, 1000], [0, h! > 900 ? h : h! * 1.2]);
+  const y2 = useTransform(scrollY, [0, 900], [0, 600]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, h! > 900 ? h : h! * 1.2]);
+  const y4 = useTransform(scrollY, [0, 900], [0, 100]);
+  const y5 = useTransform(scrollY, [0, 900], [0, -200]);
+  const y6 = useTransform(scrollY, [0, 900], [0, 0]);
+  const y7 = useTransform(scrollY, [0, 900], [0, 300]);
+  const y8 = useTransform(scrollY, [0, 900], [0, -200]);
   const color = useTransform(scrollY, [0, 1200], ["#1e293b", "#2B59C3"]);
   const marginTop = useTransform(scrollY, [0, 1400], [0, h! / 3]);
 
   return (
     <header className='min-h-screen flex flex-col items-center sm:justify-center relative w-11/12 mx-auto font-azeret text-slate-800'>
       <motion.div
-        className='absolute w-full h-full vertical-lines mx-auto left-0 right-0'
-        style={{ y: y3 }}
+        className={`absolute w-full h-full mx-auto left-0 right-0 ${styles["vertical-lines"]}`}
+        style={{ y: y2 }}
       >
-        <div className='absolute top-8 h-[30%] w-[10%] bg-gradient-to-b from-primary-200'></div>
-        <div className='absolute left-[20%] bottom-[10%] h-[40%] w-[10%] bg-gradient-to-b from-primary-200'></div>
-        <div className='absolute left-[40%] top-[20%] h-[20%] w-[10%] bg-gradient-to-b from-primary-200'></div>
-        <div className='absolute left-[60%] top-[30%] h-[20%] w-[10%] bg-gradient-to-b from-primary-200'></div>
-        <div className='absolute left-[80%] top-[10%] h-[50%] w-[10%] bg-gradient-to-b from-primary-200'></div>
+        <motion.div
+          style={{ y: y4 }}
+          className='absolute top-8 h-[30%] w-[10%] bg-gradient-to-b from-primary-200'
+        ></motion.div>
+        <motion.div
+          style={{ y: y5 }}
+          className='absolute left-[20%] bottom-[10%] h-[40%] w-[10%] bg-gradient-to-b from-primary-200'
+        ></motion.div>
+        <motion.div
+          style={{ y: y6 }}
+          className='absolute left-[40%] top-[20%] h-[20%] w-[10%] bg-gradient-to-b from-primary-200'
+        ></motion.div>
+        <motion.div
+          style={{ y: y7 }}
+          className='absolute left-[60%] top-[30%] h-[20%] w-[10%] bg-gradient-to-b from-primary-200'
+        ></motion.div>
+        <motion.div
+          style={{ y: y8 }}
+          className='absolute left-[80%] top-[10%] h-[50%] w-[10%] bg-gradient-to-b from-primary-200'
+        ></motion.div>
       </motion.div>
       <motion.img
         src='/static/images/self.webp'
@@ -62,7 +80,6 @@ export const Header: React.FC = ({}) => {
         className='absolute bottom-0 sm:w-5/6 md:w-2/3 lg:w-7/12 xl:w-1/2 2xl:w-5/12'
         style={{
           right: `${w && getBaseLog(1.1, w / 800)}rem`,
-          y: y2,
         }}
       />
       <div className='flex flex-col leading-tight drop-shadow-lg mt-40 sm:mt-0 z-10'>
@@ -83,7 +100,7 @@ export const Header: React.FC = ({}) => {
         </motion.h1>
         <motion.div
           style={{
-            y: y4,
+            y: y3,
             color: color,
             marginTop: marginTop,
           }}
