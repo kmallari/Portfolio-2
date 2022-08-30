@@ -37,7 +37,7 @@ export const Header: React.FC = ({}) => {
   };
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 400]);
-  const y2 = useTransform(scrollY, [0, 900], [0, 600]);
+  const y2 = useTransform(scrollY, [0, 900], [0, 500]);
   const y3 = useTransform(scrollY, [0, 1000], [0, h! > 900 ? h : h! * 1.2]);
   const y4 = useTransform(scrollY, [0, 900], [0, 100]);
   const y5 = useTransform(scrollY, [0, 900], [0, -200]);

@@ -2,10 +2,10 @@
   background-size: 20% 60px;
   background-image: linear-gradient(
       to right,
-      rgba(214, 241, 255, 0.1) 1px,
+      rgba(214, 241, 255, 0.03) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(214, 241, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(214, 241, 255, 0.03) 1px, transparent 1px);
 }
 
 @media (min-width: 768px) {
