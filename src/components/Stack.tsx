@@ -159,7 +159,7 @@ export const Stack: React.FC = ({}) => {
   return (
     <>
       <motion.div
-        className={`h-screen bg-gradient-to-b from-primary-200`}
+        className={`h-[110vh] bg-gradient-to-b from-primary-200`}
         style={{
           opacity: opacity,
         }}
@@ -175,7 +175,7 @@ export const Stack: React.FC = ({}) => {
           </div>
         </div>
         <div
-          className={`w-[85%] sm:w-[90%] mx-auto bg-neutral-300/5 outline outline-1 outline-neutral-300/10 ${styles["bg-grid"]} p-16 grid grid-cols-3 gap-12`}
+          className={`w-[85%] sm:w-[90%] mx-auto bg-neutral-300/5 outline outline-1 outline-neutral-300/10 ${styles["bg-grid"]} p-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12`}
         >
           <SkillListing title={"front end tools"} skills={frontend} />
           <SkillListing title={"back end tools"} skills={backend} />

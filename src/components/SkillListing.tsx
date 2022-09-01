@@ -16,8 +16,12 @@ export const SkillListing: React.FC<SkillListingProps> = ({
   skills,
 }) => {
   return (
-    <div>
-      <h3 className='text-lg font-semibold uppercase tracking-widest mb-4'>
+    <div
+      className={`${
+        title === "miscellaneous tools" ? "col-span-2 lg:col-span-1" : "col-span-1"
+      }`}
+    >
+      <h3 className='text-lg font-semibold uppercase tracking-widest mb-4 font-azeret'>
         {title}
       </h3>
       <ul className='flex flex-row flex-wrap gap-10 items-center'>
@@ -34,7 +38,7 @@ export const SkillListing: React.FC<SkillListingProps> = ({
                 alt={tech.name}
                 className={`h-fit group-hover:scale-90 transition-all`}
               ></Image>
-              <h4 className='font-azeret font-light text-sm text-neutral-light-300/50'>
+              <h4 className='font-switzer text-sm text-neutral-light-300/50'>
                 {tech.name}
               </h4>
             </div>
