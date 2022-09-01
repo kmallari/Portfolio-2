@@ -1,11 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { motion, AnimatePresence } from "framer-motion";
-export const Navbar: React.FC = ({}) => {
+import _ from "lodash";
+
+interface NavbarProps {
+  stackRef: React.RefObject<HTMLDivElement>;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
   const { width } = useWindowDimensions();
   const [w, setW] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
+  const [enteredStack, _setEnteredStack] = useState(false);
+  const enteredStackRef = useRef<boolean>(false);
+
+  const setEnteredStack = (data: boolean) => {
+    enteredStackRef.current = data;
+    _setEnteredStack(data);
+  };
+
+  useEffect(() => {
+    const onScroll = () => {
+      const s = stackRef.current!.getBoundingClientRect().top;
+      if (s <= 0) {
+        setEnteredStack(true);
+      } else {
+        setEnteredStack(false);
+      }
+      console.log(s, enteredStackRef.current);
+    };
+
+    document.addEventListener("scroll", _.throttle(onScroll, 500));
+  }, []);
 
   useEffect(() => {
     setW(width);
@@ -105,9 +132,11 @@ export const Navbar: React.FC = ({}) => {
 
   return w !== null && w > 768 ? (
     <nav
-      className={`w-full flex justify-center items-center backdrop-blur-sm fixed border-y border-slate-300 transition-all font-medium z-50 ${
-        isOpen ? "h-16" : "h-8"
-      }`}
+      className={`w-full flex justify-center items-center backdrop-blur-sm fixed border-y ${
+        !enteredStackRef.current
+          ? "border-slate-300"
+          : "border-slate-600"
+      } transition-all font-medium z-50 ${isOpen ? "h-16" : "h-8"}`}
       onMouseOver={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
@@ -119,14 +148,22 @@ export const Navbar: React.FC = ({}) => {
               initial='initial'
               animate='animate'
               exit='exit'
-              className='h-[2px] w-16 bg-slate-700 rounded-xl'
+              className={`h-[2px] w-16 bg-slate-700 rounded-xl ${
+                enteredStackRef.current
+                  ? "bg-neutral-light-300"
+                  : "bg-neutral-dark-300"
+              } transition-colors`}
             ></motion.div>
             <motion.div
               variants={bottomBurgerVariants}
               initial='initial'
               animate='animate'
               exit='exit'
-              className='h-[2px] w-16 bg-slate-700 rounded-xl'
+              className={`h-[2px] w-16 bg-slate-700 rounded-xl ${
+                enteredStackRef.current
+                  ? "bg-neutral-light-300"
+                  : "bg-neutral-dark-300"
+              } transition-colors`}
             ></motion.div>
           </motion.button>
         ) : (
@@ -161,7 +198,11 @@ export const Navbar: React.FC = ({}) => {
     </nav>
   ) : (
     <nav
-      className={`w-full flex flex-col items-center backdrop-blur-sm fixed border-y border-slate-300 transition-all font-medium h-16 z-50`}
+      className={`w-full flex flex-col items-center backdrop-blur-sm fixed border-y ${
+        !enteredStackRef.current
+          ? "border-slate-300"
+          : "border-slate-600"
+      } transition-all font-medium h-16 z-50`}
     >
       <div
         className='flex flex-col gap-2 py-2 menu-icon menu-icon z-10'

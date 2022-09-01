@@ -4,6 +4,7 @@ interface Skill {
   name: string;
   logo: string;
   width: number;
+  proficient: boolean;
 }
 
 interface SkillListingProps {
@@ -18,7 +19,9 @@ export const SkillListing: React.FC<SkillListingProps> = ({
   return (
     <div
       className={`${
-        title === "miscellaneous tools" ? "col-span-2 lg:col-span-1" : "col-span-1"
+        title === "miscellaneous tools"
+          ? "md:col-span-2 lg:col-span-1"
+          : ""
       }`}
     >
       <h3 className='text-lg font-semibold uppercase tracking-widest mb-4 font-azeret'>
@@ -28,7 +31,11 @@ export const SkillListing: React.FC<SkillListingProps> = ({
         {skills.map((tech) => (
           <li
             key={tech.name}
-            className='flex items-center justify-between p-6 rounded-md bg-[#d6f1ff05] outline-neutral-light-300/10 hover:bg-neutral-light-300/10 outline outline-1 hover:outline-neutral-light-300 hover:outline-4 transition-all group'
+            className={`flex items-center justify-between p-6 rounded-md transition-all group ${
+              tech.proficient
+                ? "bg-primary-200/10 outline-primary-200 hover:bg-primary-100/10 outline outline-1 hover:outline-4"
+                : "bg-[#d6f1ff05] outline-neutral-light-300/10 hover:bg-neutral-light-300/10 outline outline-1 hover:outline-neutral-light-300 hover:outline-4"
+            }`}
           >
             <div className='flex flex-col items-center gap-4'>
               <Image

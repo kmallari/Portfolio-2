@@ -77,12 +77,12 @@ export const Header: React.FC = ({}) => {
       <motion.img
         src='/static/images/self.webp'
         alt='kevin mallari'
-        className='absolute bottom-0 sm:w-5/6 md:w-2/3 lg:w-7/12 xl:w-1/2 2xl:w-5/12'
+        className='absolute bottom-0 sm:w-5/6 md:w-2/3 lg:w-7/12 xl:w-[45%] 2xl:w-5/12'
         style={{
           right: `${w && getBaseLog(1.1, w / 800)}rem`,
         }}
       />
-      <div className='flex flex-col leading-tight drop-shadow-lg mt-40 sm:mt-0 z-10'>
+      <div className='flex flex-col leading-tight drop-shadow-[0_2px_0px_rgba(255,255,255,1)] mt-40 sm:mt-0 z-10'>
         <motion.h1
           className={`font-semibold white-shadow`}
           style={{
