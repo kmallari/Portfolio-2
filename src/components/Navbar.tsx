@@ -5,9 +5,10 @@ import _ from "lodash";
 
 interface NavbarProps {
   stackRef: React.RefObject<HTMLDivElement>;
+  isStackInView: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
+export const Navbar: React.FC<NavbarProps> = ({ stackRef, isStackInView }) => {
   const { width } = useWindowDimensions();
   const [w, setW] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,6 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
       } else {
         setEnteredStack(false);
       }
-      console.log(s, enteredStackRef.current);
     };
 
     document.addEventListener("scroll", _.throttle(onScroll, 500));
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
   return w !== null && w > 768 ? (
     <nav
       className={`w-full flex justify-center items-center backdrop-blur-sm fixed border-y ${
-        !enteredStackRef.current
+        !enteredStackRef.current && isStackInView
           ? "border-slate-300"
           : "border-slate-600"
       } transition-all font-medium z-50 ${isOpen ? "h-16" : "h-8"}`}
@@ -149,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
               animate='animate'
               exit='exit'
               className={`h-[2px] w-16 bg-slate-700 rounded-xl ${
-                enteredStackRef.current
+                enteredStackRef.current && isStackInView
                   ? "bg-neutral-light-300"
                   : "bg-neutral-dark-300"
               } transition-colors`}
@@ -160,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
               animate='animate'
               exit='exit'
               className={`h-[2px] w-16 bg-slate-700 rounded-xl ${
-                enteredStackRef.current
+                enteredStackRef.current && isStackInView
                   ? "bg-neutral-light-300"
                   : "bg-neutral-dark-300"
               } transition-colors`}
@@ -199,9 +199,9 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef }) => {
   ) : (
     <nav
       className={`w-full flex flex-col items-center backdrop-blur-sm fixed border-y ${
-        !enteredStackRef.current
+        !enteredStackRef.current && isStackInView
           ? "border-slate-300"
-          : "border-slate-600"
+          : "border-slate-6000"
       } transition-all font-medium h-16 z-50`}
     >
       <div

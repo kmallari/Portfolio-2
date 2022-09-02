@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "../styles/stack.module.css";
 import { SkillListing } from "./SkillListing";
-import { motion, useTransform, useScroll, m } from "framer-motion";
-
+import { motion, useTransform, useScroll } from "framer-motion";
+import { InView } from "react-intersection-observer";
 interface StackProps {
   stackRef: React.RefObject<HTMLDivElement>;
+  setIsStackInView: (data: boolean) => void;
 }
 
-export const Stack: React.FC<StackProps> = ({ stackRef }) => {
+export const Stack: React.FC<StackProps> = ({ stackRef, setIsStackInView }) => {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 1000], [0, 1]);
 
@@ -201,25 +202,33 @@ export const Stack: React.FC<StackProps> = ({ stackRef }) => {
         className='min-h-screen bg-neutral-dark-200 bg-dark-pattern py-24'
         ref={stackRef}
       >
-        <div className='w-[85%] sm:w-[90%] md:w-[90%] mx-auto mb-8 flex'>
-          <div className='flex flex-row items-center gap-4'>
-            <h2 className='text-neutral-100 font-semibold text-xl sm:text-3xl md:text-4xl'>
-              Tech I&apos;ve Used
-            </h2>
-            <div className='w-24 h-[1px] border border-primary-200'></div>
-          </div>
-          <h5 className='p-4 border-2 border-primary-200 bg-primary-200/10 rounded-lg w-fit font-azeret uppercase text-xs'>
-            Tech I'm Proficient In
-          </h5>
-        </div>
-        <div
-          className={`w-[85%] sm:w-[90%] mx-auto bg-neutral-300/5 outline outline-1 outline-neutral-300/10 ${styles["bg-grid"]} p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12`}
+        <InView
+          as='div'
+          onChange={(inView, entry) => {
+            setIsStackInView(inView);
+          }}
         >
-          <SkillListing title={"front end tools"} skills={frontend} />
-          <SkillListing title={"back end tools"} skills={backend} />
-          <SkillListing title={"miscellaneous tools"} skills={misc} />
-        </div>
+          <div className='w-[85%] sm:w-[90%] md:w-[90%] mx-auto mb-8 flex'>
+            <div className='flex flex-row items-center gap-4'>
+              <h2 className='text-neutral-100 font-semibold text-xl sm:text-3xl md:text-4xl'>
+                Tech I&apos;ve Used
+              </h2>
+              <div className='w-24 h-[1px] border border-primary-200'></div>
+            </div>
+            <h5 className='p-4 border-2 border-primary-200 bg-primary-200/10 rounded-lg w-fit font-azeret uppercase text-xs'>
+              Tech I'm Proficient In
+            </h5>
+          </div>
+          <div
+            className={`w-[85%] sm:w-[90%] mx-auto bg-neutral-300/5 outline outline-1 outline-neutral-300/10 ${styles["bg-grid"]} p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12`}
+          >
+            <SkillListing title={"front end tools"} skills={frontend} />
+            <SkillListing title={"back end tools"} skills={backend} />
+            <SkillListing title={"miscellaneous tools"} skills={misc} />
+          </div>
+        </InView>
       </section>
+      <div className='h-screen'></div>
       <div className='h-screen'></div>
     </>
   );

@@ -8,6 +8,7 @@ import _ from "lodash";
 
 const Home: NextPage = () => {
   const stackRef = useRef<HTMLDivElement>(null);
+  const [isStackInView, setIsStackInView] = useState(false);
 
   return (
     <>
@@ -18,9 +19,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className='bg-neutral-light-100 text-neutral-light-100 bg-light-pattern bg-repeat font-switzer overflow-x-hidden'>
-        <Navbar stackRef={stackRef} />
+        <Navbar stackRef={stackRef} isStackInView={isStackInView} />
         <Header />
-        <Stack stackRef={stackRef} />
+        <Stack stackRef={stackRef} setIsStackInView={setIsStackInView} />
       </main>
     </>
   );
