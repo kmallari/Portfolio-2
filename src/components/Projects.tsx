@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import styles from "../styles/projects.module.css";
+import { ProjectSidebar } from "./ProjectSidebar";
 
 interface ProjectsProps {}
 
@@ -110,10 +110,20 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     },
   ];
 
+  const [project, setProject] = useState<Project>({
+    name: "",
+    description: "",
+    techUsed: [],
+    githubLink: "",
+    liveLink: "",
+    image: "",
+  });
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
   return (
     <section
       id='projects'
-      className='h-screen relative'
+      className='h-fit min-h-screen relative overflow-hidden'
       onMouseMove={handleMouse}
     >
       <motion.div
@@ -141,7 +151,6 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
         }}
       >
         {projects.map((project, index) => {
-          console.log(project);
           const magnitude = Math.round(360 / projects.length);
           const angle = magnitude * index;
           const rotate = `rotate-[${angle}deg]`;
@@ -152,9 +161,13 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
               key={project.name}
             >
               <button
-                className={`w-full h-32 rounded-full border-neutral-dark-200 border-4 text-center flex items-center justify-center whitespace-nowrap  hover:scale-110 transition-all ${negRotate}`}
+                className={`w-full h-32 rounded-full bg-gradient-to-tr from-primary-300/50 to-neutral-light-300/20 hover:from-primary-200/80 hover:to-neutral-light-300/50 hover:border-neutral-dark-200 border-4 border-neutral-light-300 text-center flex items-center justify-center whitespace-nowrap hover:scale-110 transition-all ${negRotate}`}
+                onClick={() => {
+                  setProject(project);
+                  setIsSidebarVisible(true);
+                }}
               >
-                <h6 className='text-xl font-azeret text-primary-200 drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]'>
+                <h6 className='text-xl font-azeret font-bold text-neutral-dark-200 drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]'>
                   {project.name}
                 </h6>
               </button>
@@ -162,6 +175,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
           );
         })}
       </motion.div>
+      <ProjectSidebar project={project} isVisible={isSidebarVisible} setIsVisible={setIsSidebarVisible} />
     </section>
   );
 };
