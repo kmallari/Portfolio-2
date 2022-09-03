@@ -37,4 +37,18 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    "rotate-[51deg]",
+    "rotate-[102deg]",
+    "rotate-[153deg]",
+    "rotate-[204deg]",
+    "rotate-[255deg]",
+    "rotate-[306deg]",
+    "rotate-[-51deg]",
+    "rotate-[-102deg]",
+    "rotate-[-153deg]",
+    "rotate-[-204deg]",
+    "rotate-[-255deg]",
+    "rotate-[-306deg]"
+  ]
 };

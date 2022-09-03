@@ -5,6 +5,7 @@ import { Navbar } from "../components/Navbar";
 import { Header } from "../components/Header";
 import { Stack } from "../components/Stack";
 import _ from "lodash";
+import { Projects } from "../components/Projects";
 
 const Home: NextPage = () => {
   const stackRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
         <Navbar stackRef={stackRef} isStackInView={isStackInView} />
         <Header />
         <Stack stackRef={stackRef} setIsStackInView={setIsStackInView} />
+        <Projects />
       </main>
     </>
   );

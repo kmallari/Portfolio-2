@@ -228,8 +228,6 @@ export const Stack: React.FC<StackProps> = ({ stackRef, setIsStackInView }) => {
           </div>
         </InView>
       </section>
-      <div className='h-screen'></div>
-      <div className='h-screen'></div>
     </>
   );
 };
