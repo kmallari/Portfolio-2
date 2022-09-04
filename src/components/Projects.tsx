@@ -40,7 +40,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     {
       name: "Plinko",
       description:
-        "Inspired by stake.com's Plinko game, this project is built with React, using Framer Motion for game animations.",
+        "This repository contains a Plinko game inspired by Stake.com's own Plinko game. Since this version is not meant to be used for real gambling, the user can set their own balance to start playing the game.\n\nSome of the website's features include easy bet modification, editable row and risk, manual and automatic mode, and error catching.",
       techUsed: ["React", "Vanila CSS", "Framer Motion"],
       githubLink: "https://github.com/kmallari/plinko",
       liveLink: "https://kmallari.github.io/plinko/",
@@ -49,7 +49,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     {
       name: "typr",
       description:
-        "typr is a typing speed test. It's a web app that allows users to test their typing speed. Heavy inspiration from monkeytype.com was used in crafting the website.",
+        "typr. is a minimalistic typing test website, inspired by monkeytype.com. The typing test allows you to see what you are currently typing and the words that need to be typed in a compact interface. It also provides you the choice on how long you want to do the test.\n\nSome of the website's features are live errors, a smooth caret, responsive design, and custom timers.",
       techUsed: ["React", "TypeScript", "NextJS", "Tailwind CSS", "AWS Lambda"],
       githubLink: "https://github.com/kmallari/typr-client",
       liveLink: "https://typr-client.vercel.app/",
@@ -72,9 +72,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     },
     {
       name: "Undergraduate Thesis",
-      description: `We collected electroencephalographic (EEG) data from a Brain-Computer Interface and trained a neural network. The trained network was then used to control a prosthetic hand in real-time.
-
-      The study was nominated as one, out of 21 studies in the department, to present in the Ateneo de Manila University School of Science and Engineering Student Research Symposium.`,
+      description: `We collected electroencephalographic (EEG) data from a Brain-Computer Interface and trained a neural network. The trained network was then used to control a virtual prosthetic hand in real-time.\n\nThe study was nominated as one, out of 21 studies in the department, to present in the Ateneo de Manila University School of Science and Engineering Student Research Symposium. It won the People's Choice Award in the said symposium.`,
       techUsed: ["Python", "NumPy", "Pandas", "PyTorch", "mne"],
       githubLink: "",
       liveLink: "",
@@ -83,26 +81,26 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     {
       name: "Sawwit",
       description:
-        "A reddit clone created as part of my internship in Saperium. It has most of the foundational CRUD functionalities of reddit, including posting, upvoting, downvoting, and commenting.",
+        "This is reddit clone created as part of my internship in Saperium. It has most of the foundational functionalities of Reddit, such as creating posts, comments, and votes, and modifying and deleting said elements. Database optimizations were also implemented by using a Flat Table implementation for the database, adding indexes to the tables, and implementing a Redis cache. File uploading for posts, users, and subreddits was also implemented using Multer. A real-time chat feature was also implemented using Socket.io.",
       techUsed: ["Angular", "ExpressJS", "MySQL", "Redis", "Socket.IO"],
       githubLink:
         "https://github.com/Saperium-Interns/interns-mini-apps/tree/main/Kevin-Mallari-Sawwit",
       liveLink: "",
-      image: "xx",
+      image: "/static/images/projects/sawwit.webp",
     },
     {
       name: "YouPerium",
       description:
-        "This is project where I worked with six other interns in the company. We created what is essentially a YouTube clone, with the foundational functionalities of the platform. Some features include video uploading, video listing, and a recommendation system.",
+        "This is project where I worked with six other interns in the company. We created what is essentially a YouTube clone, with the foundational functionalities of the platform. Some features include video uploading, video listing, and a recommendation system.\n\nMy personal contributions include creating all the API endpoints for the playlist functionality of the application, contributing to the playlist frontend using Angular, and creating of the recommendation system, which was implemented using AWS Personalize.",
       techUsed: ["Angular", "ExpressJS", "MySQL", "AWS S3", "AWS Personalize"],
       githubLink: "https://github.com/Saperium-Interns/interns-major-apps",
       liveLink: "",
-      image: "xx",
+      image: "/static/images/projects/youperium.webp",
     },
     {
       name: "WNRS Online",
       description:
-        "I adapted the We're Not Really Strangers (WNRS) card game and turned it into a virtual experience. The game is basically a question and answer game, and the website makes it so that everyone in the lobby can see the current card through the use of web sockets.",
+        "I adapted the We're Not Really Strangers (WNRS) card game and turned it into a virtual experience. The game is basically a question and answer game, and the website makes it so that everyone in the lobby can see the current card in real-time through the use of web sockets using the Supabase BaaS.",
       techUsed: ["React", "NextJS", "Supabase", "PostgreSQL"],
       githubLink: "",
       liveLink: "https://klu-wnrs.vercel.app/",
@@ -123,24 +121,25 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
   return (
     <section
       id='projects'
-      className='h-fit min-h-screen relative overflow-hidden'
+      className='h-fit min-h-screen relative overflow-hidden py-24'
       onMouseMove={handleMouse}
     >
+      <motion.h2
+        className='h-fit w-fit absolute inset-0 mx-auto my-auto text-black z-10'
+        style={{
+          rotateX: rotateX2,
+          rotateY: rotateY2,
+        }}
+      >
+        Project Showcase
+      </motion.h2>
       <motion.div
-        className='h-[90vh] w-[90vh] rounded-full absolute left-0 right-0 top-0 bottom-0 mx-auto my-auto'
+        className='h-[90vh] w-[90vh] rounded-full absolute inset-0 mx-auto my-auto'
         style={{
           rotateX: rotateX,
           rotateY: rotateY,
           background:
             "linear-gradient(-45deg, rgba(43,89,195,1) 0%, rgba(26,142,204,0) 50%, rgba(14,177,210,1) 100%);",
-        }}
-        animate={{
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 120,
-          repeat: Infinity,
-          ease: "linear",
         }}
       ></motion.div>
       <motion.div
@@ -175,7 +174,11 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
           );
         })}
       </motion.div>
-      <ProjectSidebar project={project} isVisible={isSidebarVisible} setIsVisible={setIsSidebarVisible} />
+      <ProjectSidebar
+        project={project}
+        isVisible={isSidebarVisible}
+        setIsVisible={setIsSidebarVisible}
+      />
     </section>
   );
 };

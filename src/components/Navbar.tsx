@@ -184,6 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef, isStackInView }) => {
                   <a
                     href={navItems[key as keyof typeof navItems].link}
                     data-replace={navItems[key as keyof typeof navItems].name}
+                    className="link"
                   >
                     <span className='flex flex-row gap-3 h-fit'>
                       {navItems[key as keyof typeof navItems].name}
@@ -239,6 +240,7 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef, isStackInView }) => {
                   <a
                     href={navItems[key as keyof typeof navItems].link}
                     data-replace={navItems[key as keyof typeof navItems].name}
+                    className="link"
                   >
                     <span className='flex flex-row gap-3 h-fit'>
                       {navItems[key as keyof typeof navItems].name}
