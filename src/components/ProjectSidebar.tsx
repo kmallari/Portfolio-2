@@ -2,9 +2,6 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiFillGithub, AiOutlineLink } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
-import Link from "next/link";
-import Image from "next/image";
-import styles from "../styles/projectSidebar.module.css";
 
 interface Project {
   name: string;
@@ -80,18 +77,22 @@ export const ProjectSidebar: React.FC<ProjectSidebarProps> = ({
 
                   <div className='flex flex-row gap-4 text-2xl text-neutral-light-300'>
                     {project.githubLink && (
-                      <Link href={project.githubLink}>
-                        <a className='hover:text-neutral-light-100 hover:scale-110 transition-all'>
-                          <AiFillGithub />
-                        </a>
-                      </Link>
+                      <a
+                        href={project.githubLink}
+                        target='_blank'
+                        className='hover:text-neutral-light-100 hover:scale-110 transition-all'
+                      >
+                        <AiFillGithub />
+                      </a>
                     )}
                     {project.liveLink && (
-                      <Link href={project.liveLink}>
-                        <a className='hover:text-neutral-light-100 hover:scale-110 transition-all'>
-                          <AiOutlineLink />
-                        </a>
-                      </Link>
+                      <a
+                        href={project.liveLink}
+                        target='_blank'
+                        className='hover:text-neutral-light-100 hover:scale-110 transition-all'
+                      >
+                        <AiOutlineLink />
+                      </a>
                     )}
                   </div>
                 </div>

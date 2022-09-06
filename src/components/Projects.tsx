@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, useScroll } from "framer-motion";
 import { ProjectSidebar } from "./ProjectSidebar";
+import styles from "../styles/projects.module.css";
 
 interface ProjectsProps {}
 
@@ -16,6 +17,29 @@ interface Project {
 
 export const Projects: React.FC<ProjectsProps> = ({}) => {
   const { width, height } = useWindowDimensions();
+
+  const [widthState, setWidthState] = useState<number | null>(null);
+  const [heightState, setHeightState] = useState<number | null>(null);
+
+  useEffect(() => {
+    setWidthState(width);
+    setHeightState(height);
+  }, []);
+
+  useEffect(() => {
+    setWidthState(width!);
+  }, [width]);
+
+  useEffect(() => {
+    setHeightState(height!);
+  }, [height]);
+
+  console.log(
+    widthState,
+    heightState,
+    widthState !== null && heightState !== null && widthState < heightState
+  );
+
   const x = useMotionValue(200);
   const y = useMotionValue(200);
 
@@ -71,14 +95,6 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
       image: "/static/images/projects/portfolio.webp",
     },
     {
-      name: "Undergraduate Thesis",
-      description: `We collected electroencephalographic (EEG) data from a Brain-Computer Interface and trained a neural network. The trained network was then used to control a virtual prosthetic hand in real-time.\n\nThe study was nominated as one, out of 21 studies in the department, to present in the Ateneo de Manila University School of Science and Engineering Student Research Symposium. It won the People's Choice Award in the said symposium.`,
-      techUsed: ["Python", "NumPy", "Pandas", "PyTorch", "mne"],
-      githubLink: "",
-      liveLink: "",
-      image: "/static/images/projects/thesis.webp",
-    },
-    {
       name: "Sawwit",
       description:
         "This is reddit clone created as part of my internship in Saperium. It has most of the foundational functionalities of Reddit, such as creating posts, comments, and votes, and modifying and deleting said elements. Database optimizations were also implemented by using a Flat Table implementation for the database, adding indexes to the tables, and implementing a Redis cache. File uploading for posts, users, and subreddits was also implemented using Multer. A real-time chat feature was also implemented using Socket.io.",
@@ -87,6 +103,14 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
         "https://github.com/Saperium-Interns/interns-mini-apps/tree/main/Kevin-Mallari-Sawwit",
       liveLink: "",
       image: "/static/images/projects/sawwit.webp",
+    },
+    {
+      name: "Undergraduate Thesis",
+      description: `We collected electroencephalographic (EEG) data from a Brain-Computer Interface and trained a neural network. The trained network was then used to control a virtual prosthetic hand in real-time.\n\nThe study was nominated as one, out of 21 studies in the department, to present in the Ateneo de Manila University School of Science and Engineering Student Research Symposium. It won the People's Choice Award in the said symposium.`,
+      techUsed: ["Python", "NumPy", "Pandas", "PyTorch", "mne"],
+      githubLink: "",
+      liveLink: "",
+      image: "/static/images/projects/thesis.webp",
     },
     {
       name: "YouPerium",
@@ -116,69 +140,106 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     liveLink: "",
     image: "",
   });
+
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [2300, 2800], [1, 0.3]);
 
   return (
     <section
       id='projects'
-      className='h-fit min-h-screen relative overflow-hidden py-24'
+      className='h-fit min-h-screen relative overflow-hidden'
       onMouseMove={handleMouse}
     >
-      <motion.h2
-        className='h-fit w-fit absolute inset-0 mx-auto my-auto text-black z-10'
-        style={{
-          rotateX: rotateX2,
-          rotateY: rotateY2,
-        }}
-      >
-        Project Showcase
-      </motion.h2>
       <motion.div
-        className='h-[90vh] w-[90vh] rounded-full absolute inset-0 mx-auto my-auto'
+        className={`absolute h-full w-full bg-gradient-to-b from-primary-200 top-0 left-0`}
         style={{
-          rotateX: rotateX,
-          rotateY: rotateY,
-          background:
-            "linear-gradient(-45deg, rgba(43,89,195,1) 0%, rgba(26,142,204,0) 50%, rgba(14,177,210,1) 100%);",
+          opacity: opacity,
         }}
       ></motion.div>
       <motion.div
-        className='h-screen mx-auto relative'
-        style={{
-          rotateX: rotateX2,
-          rotateY: rotateY2,
-        }}
-      >
-        {projects.map((project, index) => {
-          const magnitude = Math.round(360 / projects.length);
-          const angle = magnitude * index;
-          const rotate = `rotate-[${angle}deg]`;
-          const negRotate = `rotate-[${-angle}deg]`;
-          return (
-            <div
-              className={`absolute h-[95vh] w-32 inset-0 my-auto mx-auto ${rotate}`}
-              key={project.name}
-            >
-              <button
-                className={`w-full h-32 rounded-full bg-gradient-to-tr from-primary-300/50 to-neutral-light-300/20 hover:from-primary-200/80 hover:to-neutral-light-300/50 hover:border-neutral-dark-200 border-4 border-neutral-light-300 text-center flex items-center justify-center whitespace-nowrap hover:scale-110 transition-all ${negRotate}`}
-                onClick={() => {
-                  setProject(project);
-                  setIsSidebarVisible(true);
+        className={`absolute w-full h-full mx-auto left-0 right-0 ${styles["vertical-lines"]}`}
+      ></motion.div>
+      <div>
+        <motion.h2
+          className='h-fit w-fit absolute inset-0 mx-auto mt-16 md:my-auto font-extrabold z-10 text-3xl text-center uppercase tracking-widest text-primary-200 drop-shadow-[3px_3px_0px_rgba(49,89,185,0.4)]'
+          style={{
+            rotateX: rotateX2,
+            rotateY: rotateY2,
+          }}
+        >
+          Project
+          <br />
+          Showcase
+        </motion.h2>
+
+        {/* BALL IN THE MIDDLE */}
+        <motion.div
+          className={`rounded-full absolute inset-0 mx-auto my-auto`}
+          style={{
+            rotateX: rotateX,
+            rotateY: rotateY,
+            background:
+              "linear-gradient(-45deg, rgba(43,89,195,1) 0%, rgba(26,142,204,0) 50%, rgba(14,177,210,1) 100%);",
+            height:
+              widthState !== null &&
+              heightState !== null &&
+              widthState < heightState
+                ? widthState * 0.8
+                : "80vh",
+            width:
+              widthState !== null &&
+              heightState !== null &&
+              widthState < heightState
+                ? widthState * 0.8
+                : "80vh",
+          }}
+        ></motion.div>
+
+        {/* PROJECT BALLS */}
+        <motion.div
+          className='h-screen mx-auto relative'
+          style={{
+            rotateX: rotateX2,
+            rotateY: rotateY2,
+          }}
+        >
+          {projects.map((project, index) => {
+            const magnitude = Math.round(360 / projects.length);
+            const angle = magnitude * index;
+            const rotate = `rotate-[${angle}deg]`;
+            const negRotate = `rotate-[${-angle}deg]`;
+            return (
+              <div
+                className={`absolute w-20 sm:w-24 md:w-28 lg:w-32 inset-0 my-auto mx-auto ${rotate}`}
+                key={project.name}
+                style={{
+                  height:
+                    widthState! < heightState! ? widthState! * 0.9 : "90vh",
                 }}
               >
-                <h6 className='text-xl font-azeret font-bold text-neutral-dark-200 drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]'>
-                  {project.name}
-                </h6>
-              </button>
-            </div>
-          );
-        })}
-      </motion.div>
-      <ProjectSidebar
-        project={project}
-        isVisible={isSidebarVisible}
-        setIsVisible={setIsSidebarVisible}
-      />
+                <button
+                  className={`w-full h-20 sm:h-24 md:h-28 lg:h-32 rounded-full bg-gradient-to-tr from-primary-300/50 to-neutral-light-300/20 hover:from-primary-200/80 hover:to-neutral-light-300/50 hover:border-neutral-dark-200 border-4 border-neutral-light-300 text-center flex items-center justify-center sm:whitespace-nowrap hover:scale-110 transition-all ${negRotate}`}
+                  onClick={() => {
+                    setProject(project);
+                    setIsSidebarVisible(true);
+                  }}
+                >
+                  <h6 className='text-xl font-azeret font-bold text-neutral-dark-200 drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]'>
+                    {project.name}
+                  </h6>
+                </button>
+              </div>
+            );
+          })}
+        </motion.div>
+        <ProjectSidebar
+          project={project}
+          isVisible={isSidebarVisible}
+          setIsVisible={setIsSidebarVisible}
+        />
+      </div>
     </section>
   );
 };
