@@ -1,0 +1,21 @@
+.bg-grid {
+  background-size: 20% 60px;
+  background-image: linear-gradient(
+      to right,
+      #D6F1FF 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, #D6F1FF 1px, transparent 1px);
+}
+
+@media (min-width: 768px) {
+  .bg-grid {
+    background-size: 12.5% 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bg-grid {
+    background-size: 8.33% 80px;
+  }
+}

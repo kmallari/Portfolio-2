@@ -97,7 +97,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     {
       name: "Sawwit",
       description:
-        "This is reddit clone created as part of my internship in Saperium. It has most of the foundational functionalities of Reddit, such as creating posts, comments, and votes, and modifying and deleting said elements. Database optimizations were also implemented by using a Flat Table implementation for the database, adding indexes to the tables, and implementing a Redis cache. File uploading for posts, users, and subreddits was also implemented using Multer. A real-time chat feature was also implemented using Socket.io.",
+        "This is reddit clone created as part of my internship in Saperium. It has most of the foundational functionalities of Reddit, such as creating posts, comments, and votes, and modifying and deleting said elements. \n\nDatabase optimizations were also implemented by using a Flat Table implementation for the database, adding indexes to the tables, and implementing a Redis cache. File uploading for posts, users, and subreddits was also implemented using Multer. A real-time chat feature was also implemented using Socket.io.",
       techUsed: ["Angular", "ExpressJS", "MySQL", "Redis", "Socket.IO"],
       githubLink:
         "https://github.com/Saperium-Interns/interns-mini-apps/tree/main/Kevin-Mallari-Sawwit",
@@ -163,7 +163,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
       ></motion.div>
       <div>
         <motion.h2
-          className='h-fit w-fit absolute inset-0 mx-auto mt-16 md:my-auto font-extrabold z-10 text-3xl text-center uppercase tracking-widest text-primary-200 drop-shadow-[3px_3px_0px_rgba(49,89,185,0.4)]'
+          className='h-fit w-fit absolute inset-0 mx-auto mt-[4.5rem] md:my-auto font-extrabold z-10 text-3xl text-center uppercase tracking-widest text-primary-200 drop-shadow-[3px_3px_0px_rgba(49,89,185,0.4)]'
           style={{
             rotateX: rotateX2,
             rotateY: rotateY2,
@@ -212,7 +212,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
             const negRotate = `rotate-[${-angle}deg]`;
             return (
               <div
-                className={`absolute w-20 sm:w-24 md:w-28 lg:w-32 inset-0 my-auto mx-auto ${rotate}`}
+                className={`absolute w-[4.5rem] sm:w-24 md:w-28 lg:w-32 inset-0 my-auto mx-auto ${rotate}`}
                 key={project.name}
                 style={{
                   height:
@@ -220,7 +220,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
                 }}
               >
                 <button
-                  className={`w-full h-20 sm:h-24 md:h-28 lg:h-32 rounded-full bg-gradient-to-tr from-primary-300/50 to-neutral-light-300/20 hover:from-primary-200/80 hover:to-neutral-light-300/50 hover:border-neutral-dark-200 border-4 border-neutral-light-300 text-center flex items-center justify-center sm:whitespace-nowrap hover:scale-110 transition-all ${negRotate}`}
+                  className={`w-full h-[4.5rem] sm:h-24 md:h-28 lg:h-32 rounded-full bg-gradient-to-tr from-primary-300/50 to-neutral-light-300/20 hover:from-primary-200/80 hover:to-neutral-light-300/50 hover:border-neutral-dark-200 border-4 border-neutral-light-300 text-center flex items-center justify-center sm:whitespace-nowrap hover:scale-110 transition-all ${negRotate}`}
                   onClick={() => {
                     setProject(project);
                     setIsSidebarVisible(true);
