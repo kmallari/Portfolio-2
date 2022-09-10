@@ -215,7 +215,7 @@ export const Stack: React.FC<StackProps> = ({ stackRef, setIsStackInView }) => {
               </h2>
               <div className='w-24 h-[1px] border border-primary-200'></div>
             </div>
-            <h5 className='p-4 border-2 border-primary-200 bg-primary-200/10 rounded-lg w-fit font-azeret uppercase text-xs'>
+            <h5 className='p-4 border-2 border-primary-200 bg-primary-200/10 rounded-lg w-fit font-azeret uppercase text-xs shadow-xl shadow-primary-200/50'>
               Tech I'm Proficient In
             </h5>
           </div>

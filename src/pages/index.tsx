@@ -7,6 +7,7 @@ import { Stack } from "../components/Stack";
 import _ from "lodash";
 import { Projects } from "../components/Projects";
 import { ContactForm } from "../components/ContactForm";
+import { Footer } from "../components/Footer";
 const Home: NextPage = () => {
   const stackRef = useRef<HTMLDivElement>(null);
   const [isStackInView, setIsStackInView] = useState(false);
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
         <Stack stackRef={stackRef} setIsStackInView={setIsStackInView} />
         <Projects />
         <ContactForm />
+        <Footer />
       </main>
     </>
   );

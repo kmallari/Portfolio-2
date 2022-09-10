@@ -33,8 +33,8 @@ export const SkillListing: React.FC<SkillListingProps> = ({
             key={tech.name}
             className={`flex items-center justify-between p-6 rounded-md transition-all group ${
               tech.proficient
-                ? "bg-primary-200/10 outline-primary-200 hover:bg-primary-100/10 outline outline-1 hover:outline-4"
-                : "bg-[#d6f1ff05] outline-neutral-light-300/10 hover:bg-neutral-light-300/10 outline outline-1 hover:outline-neutral-light-300 hover:outline-4"
+                ? "bg-primary-200/10 border border-primary-200 hover:bg-primary-100/10 hover:shadow-2xl hover:shadow-primary-200 "
+                : "bg-[#d6f1ff05] border border-neutral-light-300/10 hover:bg-neutral-light-300/10 hover:shadow-2xl hover:shadow-neutral-light-300/20"
             }`}
           >
             <div className='flex flex-col items-center gap-4'>
