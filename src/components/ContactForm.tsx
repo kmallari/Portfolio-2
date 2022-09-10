@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 import styles from "../styles/contactForm.module.css";
 import { FiArrowUpRight } from "react-icons/fi";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,9 +11,16 @@ interface ContactFormProps {}
 
 export const ContactForm: React.FC<ContactFormProps> = ({}) => {
   const [submitted, setSubmitted] = useState(false);
+  const [token, setToken] = useState("");
+
+  const handleVerify = useCallback((token: string) => {
+    console.log(token);
+    setToken(token);
+  }, []);
 
   return (
     <section className='min-h-screen text-neutral-dark-200 py-48 font-switzer overflow-hidden'>
+      <GoogleReCaptcha onVerify={handleVerify} />
       <div
         className={`relative w-[90%] h-[90%] mx-auto bg-neutral-light-100 shadow-xl rounded-xl py-12 px-10 sm:px-16 md:py-16 md:px-24 lg:py-24 lg:px-44 overflow-hidden' ${styles["bg-grid"]}`}
       >
@@ -73,26 +80,29 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
           }}
           onSubmit={async (values, { setSubmitting }) => {
             console.log("SUBMITTING");
-            const res = await toast.promise(
-              fetch("/api/mail", {
-                body: JSON.stringify({
-                  email: values.email,
-                  name: values.name,
-                  message: values.message,
+            if (token) {
+              const res = await toast.promise(
+                fetch("/api/mail", {
+                  body: JSON.stringify({
+                    email: values.email,
+                    name: values.name,
+                    message: values.message,
+                  }),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  method: "POST",
                 }),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                method: "POST",
-              }),
-              {
-                pending: "Sending...",
-                success: "Message sent!",
-                error: "Error sending message.",
-              }
-            );
-            setSubmitting(true);
-            setSubmitted(true);
+                {
+                  pending: "Sending...",
+                  success: "Message sent!",
+                  error: "Error sending message.",
+                }
+              );
+              setSubmitting(true);
+              setSubmitted(true);
+            }
+
             console.log("SUBMITTED");
           }}
         >
