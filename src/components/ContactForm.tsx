@@ -3,18 +3,36 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "../styles/contactForm.module.css";
 import { FiArrowUpRight } from "react-icons/fi";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ContactFormProps {}
 
 export const ContactForm: React.FC<ContactFormProps> = ({}) => {
-  const { width } = useWindowDimensions();
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section className='min-h-screen text-neutral-dark-200 py-16 font-switzer'>
+    <section className='min-h-screen text-neutral-dark-200 py-48 font-switzer overflow-hidden'>
       <div
-        className={`relative w-[90%] h-[90%] mx-auto bg-neutral-light-100 shadow-xl rounded-xl py-12 px-12 sm:px-20 md:py-16 md:px-28 lg:py-24 lg:px-48 ${styles["bg-grid"]} `}
+        className={`relative w-[90%] h-[90%] mx-auto bg-neutral-light-100 shadow-xl rounded-xl py-12 px-10 sm:px-16 md:py-16 md:px-24 lg:py-24 lg:px-44 overflow-hidden' ${styles["bg-grid"]}`}
       >
+        <motion.div
+          className='overflow-hidden absolute top-0 right-0 rounded-xl'
+          animate={{ opacity: [0.5, 0, 0.5] }}
+          transition={{
+            duration: 6,
+            type: "spring",
+            repeat: Infinity,
+          }}
+        >
+          <img
+            src='/static/images/tr-ball.webp'
+            className=''
+            alt='blurred ball'
+            width={4000}
+          />
+        </motion.div>
         <div
           className='flex flex-col gap-4 text-3xl sm:text-4xl md:text-6xl font-semibold mb-12'
           id='contact-header '
@@ -53,22 +71,29 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
               ? {}
               : errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(async () => {
-              const res = await fetch("/api/mail", {
+          onSubmit={async (values, { setSubmitting }) => {
+            console.log("SUBMITTING");
+            const res = await toast.promise(
+              fetch("/api/mail", {
                 body: JSON.stringify({
                   email: values.email,
-                  fullname: values.name,
+                  name: values.name,
                   message: values.message,
                 }),
                 headers: {
                   "Content-Type": "application/json",
                 },
                 method: "POST",
-              });
-              setSubmitting(false);
-              console.log("TEST");
-            }, 400);
+              }),
+              {
+                pending: "Sending...",
+                success: "Message sent!",
+                error: "Error sending message.",
+              }
+            );
+            setSubmitting(true);
+            setSubmitted(true);
+            console.log("SUBMITTED");
           }}
         >
           {({ isSubmitting }) => (
@@ -123,16 +148,27 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
 
               <button
                 type='submit'
-                disabled={isSubmitting}
-                className='absolute bg-primary-200 hover:bg-primary-100 hover:-translate-y-1 py-3 px-6 rounded-xl text-neutral-light-200 transition-all z-10 flex flex-row gap-2 items-center'
+                disabled={isSubmitting || submitted}
+                className='absolute bg-primary-200 hover:bg-primary-100 py-3 px-6 rounded-xl text-neutral-light-200 transition-all z-10 flex flex-row gap-2 items-center mt-6 disabled:cursor-not-allowed disabled:bg-red-500 disabled:hover:bg-red-500'
               >
                 Send Message <FiArrowUpRight />
               </button>
             </Form>
           )}
         </Formik>
-        <div className='from-transparent  to-neutral-light-100 bg-gradient-to-b absolute w-full h-full top-0 left-0 z-0 rounded-lg'></div>
+        <div className='from-transparent to-neutral-light-100 bg-gradient-to-b absolute w-full h-full top-0 left-0 z-0 rounded-lg'></div>
       </div>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </section>
   );
 };
