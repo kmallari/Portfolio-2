@@ -8,6 +8,7 @@ import _ from "lodash";
 import { Projects } from "../components/Projects";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
+import { Socials } from "../components/Socials";
 const Home: NextPage = () => {
   const stackRef = useRef<HTMLDivElement>(null);
   const [isStackInView, setIsStackInView] = useState(false);
@@ -20,8 +21,9 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className='bg-neutral-light-100 text-neutral-light-100 bg-light-pattern bg-repeat font-switzer overflow-x-hidden'>
+      <main className='bg-neutral-light-100 text-neutral-light-100 bg-light-pattern bg-repeat font-switzer overflow-x-hidden relative'>
         <Navbar stackRef={stackRef} isStackInView={isStackInView} />
+        <Socials />
         <Header />
         <Stack stackRef={stackRef} setIsStackInView={setIsStackInView} />
         <Projects />
