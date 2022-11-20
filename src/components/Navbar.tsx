@@ -118,11 +118,11 @@ export const Navbar: React.FC<NavbarProps> = ({ stackRef, isStackInView }) => {
   const navItems = {
     home: {
       name: "Home",
-      link: "/",
+      link: "/#",
     },
     stack: {
       name: "Stack",
-      link: "/#stack",
+      link: "/#tech-stack",
     },
     projects: {
       name: "Projects",

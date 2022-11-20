@@ -106,7 +106,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
     },
     {
       name: "Undergraduate Thesis",
-      description: `We collected electroencephalographic (EEG) data from a Brain-Computer Interface and trained a neural network. The trained network was then used to control a virtual prosthetic hand in real-time.\n\nThe study was nominated as one, out of 21 studies in the department, to present in the Ateneo de Manila University School of Science and Engineering Student Research Symposium. It won the People's Choice Award in the said symposium.`,
+      description: `We collected electroencephalographic (EEG) data from a Brain-Computer Interface and trained a neural network. The trained network was then used to control a virtual prosthetic hand in real-time.\n\nAwarded as the Best Electronics and Computer Engineering undergraduate research for the SY 2021-2022 and People’s Choice in the Ateneo de Manila University School of Science and Engineering (SOSE) Student Research Symposium, competing against fifteen other studies from different departments in SOSE. \n\nThe study is currently in the process of publication under the The IEEE International Conference on Bioinformatics and Biomedicine, where there was only a 20% acceptance rate.`,
       techUsed: ["Python", "NumPy", "Pandas", "PyTorch", "mne"],
       githubLink: "",
       liveLink: "",

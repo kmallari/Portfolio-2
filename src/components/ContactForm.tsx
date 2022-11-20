@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 import styles from "../styles/contactForm.module.css";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiCheckSquare, FiArrowUpRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,7 +19,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
   }, []);
 
   return (
-    <section className='min-h-screen text-neutral-dark-200 py-48 font-switzer overflow-hidden'>
+    <section
+      id='contact'
+      className='min-h-screen text-neutral-dark-200 py-48 font-switzer overflow-hidden'
+    >
       <GoogleReCaptcha onVerify={handleVerify} />
       <div
         className={`relative w-[90%] h-[90%] mx-auto bg-neutral-light-100 shadow-xl rounded-xl py-12 px-10 sm:px-16 md:py-16 md:px-24 lg:py-24 lg:px-44 overflow-hidden' ${styles["bg-grid"]}`}
@@ -161,7 +164,16 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
                 disabled={isSubmitting || submitted}
                 className='absolute bg-primary-200 hover:bg-primary-100 py-3 px-6 rounded-xl text-neutral-light-200 transition-all z-10 flex flex-row gap-2 items-center mt-6 disabled:cursor-not-allowed disabled:bg-red-500 disabled:hover:bg-red-500'
               >
-                Send Message <FiArrowUpRight />
+                {submitted ? (
+                  <>
+                  <FiCheckSquare/>
+                  Message sent!
+                  </>
+                ) : (
+                  <>
+                    Send Message <FiArrowUpRight />
+                  </>
+                )}
               </button>
             </Form>
           )}
