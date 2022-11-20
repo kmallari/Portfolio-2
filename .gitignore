@@ -26,3 +26,5 @@ dist-ssr
 # next.js
 /.next/
 /out/
+.next
+next
