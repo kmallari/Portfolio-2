@@ -104,9 +104,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
               );
               setSubmitting(true);
               setSubmitted(true);
+              console.log("SUBMITTED", res);
             }
-
-            console.log("SUBMITTED");
           }}
         >
           {({ isSubmitting }) => (
@@ -166,8 +165,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
               >
                 {submitted ? (
                   <>
-                  <FiCheckSquare/>
-                  Message sent!
+                    <FiCheckSquare />
+                    Message sent!
                   </>
                 ) : (
                   <>
