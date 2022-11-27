@@ -27,7 +27,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
             alt="me"
             width="120"
             height="120"
-            style="border: 1px solid white; border-radius: 50%; outline: 1px solid #2B59C3"
+            style="border: 1px solid white; border-radius: 50%;"
           />
           <div style="display: flex; flex-direction: column; gap: 1em; margin-left: 1.5em">
             <div>
