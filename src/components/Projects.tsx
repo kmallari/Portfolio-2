@@ -181,7 +181,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
             rotateX: rotateX,
             rotateY: rotateY,
             background:
-              "linear-gradient(-45deg, rgba(43,89,195,1) 0%, rgba(26,142,204,0) 50%, rgba(14,177,210,1) 100%);",
+              "linear-gradient(-45deg, rgba(43,89,195,1) 0%, rgba(26,142,204,0) 50%, rgba(14,177,210,1) 100%)",
             height:
               widthState !== null &&
               heightState !== null &&

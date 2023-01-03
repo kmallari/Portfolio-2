@@ -31,7 +31,7 @@ export const SkillListing: React.FC<SkillListingProps> = ({
         {skills.map((tech) => (
           <li
             key={tech.name}
-            className={`flex items-center justify-between p-6 rounded-md transition-all group ${
+            className={`flex items-center justify-between p-4 lg:p-6 rounded-md transition-all group ${
               tech.proficient
                 ? "bg-primary-200/10 border border-primary-200 hover:bg-primary-100/10 hover:shadow-2xl hover:shadow-primary-200 "
                 : "bg-[#d6f1ff05] border border-neutral-light-300/10 hover:bg-neutral-light-300/10 hover:shadow-2xl hover:shadow-neutral-light-300/20"

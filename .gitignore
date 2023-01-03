@@ -28,3 +28,5 @@ dist-ssr
 /out/
 .next
 next
+
+.git

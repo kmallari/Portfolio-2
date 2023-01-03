@@ -37,9 +37,9 @@ export const ProjectSidebar: React.FC<ProjectSidebarProps> = ({
             }}
           ></motion.div>
           <div className='fixed h-fit w-full sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-1/2 top-0 right-0 z-50 font-switzer'>
-            <div className='relative w-full h-full'>
+            <div className='relative w-full h-full '>
               <motion.div
-                className='bg-dark-pattern bg-neutral-dark-200 h-screen top-0 right-0 p-12 flex flex-col justify-start overflow-y-auto relative z-0'
+                className='bg-dark-pattern bg-neutral-dark-200 h-screen top-0 right-0 p-12 flex flex-col justify-start overflow-y-auto overflow-x-hidden relative z-0'
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
@@ -52,7 +52,7 @@ export const ProjectSidebar: React.FC<ProjectSidebarProps> = ({
               >
                 <motion.div
                   className='overflow-hidden absolute -right-96 -top-96'
-                  animate={{ scale: [1, 1.2, 1], opacity: [1, 0, 1] }}
+                  animate={{ scale: [0.8, 0.8, 0.8], opacity: [1, 0, 1] }}
                   transition={{
                     duration: 5,
                     type: "spring",
