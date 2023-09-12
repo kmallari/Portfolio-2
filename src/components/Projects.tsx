@@ -127,7 +127,7 @@ export const Projects: React.FC<ProjectsProps> = ({}) => {
         "I adapted the We're Not Really Strangers (WNRS) card game and turned it into a virtual experience. The game is basically a question and answer game, and the website makes it so that everyone in the lobby can see the current card in real-time through the use of web sockets using the Supabase BaaS.",
       techUsed: ["React", "NextJS", "Supabase", "PostgreSQL"],
       githubLink: "",
-      liveLink: "https://klu-wnrs.vercel.app/",
+      liveLink: "https://wnrs.klukode.dev/",
       image: "/static/images/projects/wnrs.webp",
     },
   ];
